@@ -1,0 +1,116 @@
+# This has been created by @lillieH1000
+
+name: Build the TikTokPlusPlus
+
+on:
+  workflow_dispatch:
+    inputs:
+      sdk_version:
+        description: "iOS SDK version to be used during build (don't change it if you don't know what you are doing)"
+        default: "16.5"
+        required: true
+        type: string   
+      decrypted_tiktok_url:
+        description: "The direct URL to the decrypted TikTok ipa (I recommend using Dropbox, Google Drive is causing errors)"
+        default: "https://iosmod.net/IPAs/TikTok_39.5.0.ipa"
+        required: true
+        type: string
+    
+jobs:
+  build:
+    name: TikTokPlusPlus
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@main
+
+      - name: Checkout RootHide/theos
+        uses: actions/checkout@main
+        with:
+          repository: RootHide/theos
+          ref: master
+          submodules: recursive
+          path: theos
+
+      - name: Download iOS SDK
+        if: steps.SDK.outputs.cache-hit != 'true'
+        run: |
+          git clone --quiet -n --depth=1 --filter=tree:0 https://github.com/theos/sdks/
+          cd sdks
+          git sparse-checkout set --no-cone iPhoneOS${{ inputs.sdk_version }}.sdk
+          git checkout
+          mv *.sdk $THEOS/sdks
+        env:
+          THEOS: ${{ github.workspace }}/theos
+
+      - name: Setup Theos Jailed
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: qnblackcat/theos-jailed
+          ref: master
+          path: theos-jailed
+          submodules: recursive
+
+      - name: Install Theos Jailed
+        run: |
+          ./theos-jailed/install
+        env:
+          THEOS: ${{ github.workspace }}/theos
+          
+      - name: Install cyan
+        run: pipx install --force https://github.com/asdfzxcvbn/pyzule-rw/archive/main.zip
+
+      - name: Downloading TikTok iPA
+        run: |
+          wget "$TIKTOK_URL" --no-verbose -O TikTok.ipa
+        env:
+          TIKTOK_URL: ${{ inputs.decrypted_tiktok_url }}    
+
+      - name: Build Package 
+        id: build_package
+        run: |
+          brew install make xz ldid 
+          export THEOS=theos
+          gmake clean package FINALPACKAGE=1
+          PACKAGE_VERSION=$(grep '^Version:' control | cut -d' ' -f2)
+          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
+          echo "==> Built v$PACKAGE_VERSION Successfully."
+
+      - name: Inject tweak into provided IPA
+        run: |
+          cyan -i TikTok.ipa -o packages/TikTok++.ipa -uwsf packages/*.deb
+
+      - name: Prepare TikTok iPA
+        id: prepare_tiktok
+        run: |
+          cd ${{ github.workspace }}/packages
+          mv TikTok++.ipa TikTok++.zip
+          unzip -q TikTok++.zip
+          tikTok_version=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "Payload/TikTok.app/Info.plist")
+          echo "==> TikTok v$tikTok_version Unziped!"
+          echo "tikTok_version=${tikTok_version}" >> $GITHUB_OUTPUT
+          cd Payload/TikTok.app
+          rm -rf Watch
+          echo "==> Removed Watch folder"
+          cd ../..
+          zip -r TikTok_$tikTok_version.ipa Payload > /dev/null
+          echo "==> TikTok_$tikTok_version.ipa Ziped!"
+          rm -rf Payload    
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: packages/*.deb
+          
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2.0.5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRAFT: ${{ inputs.create_release }}
+        with:
+          tag_name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ steps.build_package.outputs.PACKAGE_VERSION }}
+          name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ steps.build_package.outputs.PACKAGE_VERSION }}
+          files: |
+            packages/*.deb
+            packages/TikTok_${{steps.prepare_tiktok.outputs.tikTok_version}}.ipa
+          draft: ${{ env.DRAFT }}
