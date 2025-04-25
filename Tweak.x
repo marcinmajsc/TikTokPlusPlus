@@ -3,7 +3,7 @@
 NSArray *jailbreakPaths;
 
 static void showConfirmation(void (^okHandler)(void)) {
-  [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"Are you sure?" image:nil actionButtonTitle:@"Yes" cancelButtonTitle:@"No" actionBlock:^{
+  [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"Are you sure?" image:nil actionButtonTitle:@"Yes" cancelButtonTitle:@"No" actionBlock:^{
     okHandler();
   } cancelBlock:nil];
 }
@@ -271,8 +271,8 @@ static BOOL isAuthenticationShowed = FALSE;
         TTKSettingsBaseCellPlugin *BHTikTokSettingsPluginCell = [[%c(TTKSettingsBaseCellPlugin) alloc] initWithPluginContext:self.context];
 
         AWESettingItemModel *BHTikTokSettingsItemModel = [[%c(AWESettingItemModel) alloc] initWithIdentifier:@"bhtiktok_settings"];
-        [BHTikTokSettingsItemModel setTitle:@"BHTikTok++ settings"];
-        [BHTikTokSettingsItemModel setDetail:@"BHTikTok++ settings"];
+        [BHTikTokSettingsItemModel setTitle:@"IOSMOD.NET"];
+        [BHTikTokSettingsItemModel setDetail:@"IOSMOD.NET"];
         [BHTikTokSettingsItemModel setIconImage:[UIImage systemImageNamed:@"gear"]];
         [BHTikTokSettingsItemModel setType:99];
 
@@ -1186,7 +1186,7 @@ static BOOL isAuthenticationShowed = FALSE;
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = [downloadableURL absoluteString];
     } else {
-        [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"Could Not Copy Music." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
+        [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"Could Not Copy Music." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
     }
 }
 %new - (void)copyVideo:(AWEAwemeBaseViewController *)rootVC {
@@ -1195,7 +1195,7 @@ static BOOL isAuthenticationShowed = FALSE;
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = [downloadableURL absoluteString];
     } else {
-        [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
+        [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
     }
 }
 %new - (void)copyDecription:(AWEAwemeBaseViewController *)rootVC {
@@ -1204,7 +1204,7 @@ static BOOL isAuthenticationShowed = FALSE;
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = video_description;
     } else {
-        [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
+        [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
     }
 }
 %new - (void) downloadButtonHandler:(UIButton *)sender {
@@ -1546,7 +1546,7 @@ static BOOL isAuthenticationShowed = FALSE;
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = [downloadableURL absoluteString];
     } else {
-        [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
+        [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
     }
 }
 %new - (void)copyVideo:(AWEAwemeBaseViewController *)rootVC {
@@ -1555,7 +1555,7 @@ static BOOL isAuthenticationShowed = FALSE;
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = [downloadableURL absoluteString];
     } else {
-        [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
+        [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
     }
 }
 %new - (void)copyDecription:(AWEAwemeBaseViewController *)rootVC {
@@ -1564,7 +1564,7 @@ static BOOL isAuthenticationShowed = FALSE;
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         pasteboard.string = video_description;
     } else {
-        [%c(AWEUIAlertView) showAlertWithTitle:@"BHTikTok, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
+        [%c(AWEUIAlertView) showAlertWithTitle:@"IOSMOD.NET, Hi" description:@"The video dosen't have music to download." image:nil actionButtonTitle:@"OK" cancelButtonTitle:nil actionBlock:nil cancelBlock:nil];
     }
 }
 %new - (void) downloadButtonHandler:(UIButton *)sender {
