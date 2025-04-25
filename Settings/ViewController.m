@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor systemBackgroundColor];
     
-    self.title = @"BHTikTok++ Settings";
+    self.title = @"IOSMOD.NET";
     self.staticTable = [[UITableView alloc] initWithFrame:CGRectZero ];
     self.staticTable.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.staticTable];
@@ -91,7 +91,7 @@
         case 6:
             return 2;
         case 7:
-            return 3; // developer section
+            return 1; // developer section
         default:
             return 0; // Fallback for unexpected section
     }
@@ -378,13 +378,13 @@
         switch (indexPath.row) {
             case 0: {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-                cell.textLabel.text = @"Raul Saeed";
+                cell.textLabel.text = @"IOSMOD.NET";
                 cell.textLabel.textColor = [UIColor systemBlueColor];
-                cell.detailTextLabel.text = @"Github Page";
+                cell.detailTextLabel.text = @"Click here to check the update.";
                 cell.imageView.image = [UIImage systemImageNamed:@"link"];
                 cell.detailTextLabel.textColor = [UIColor systemGrayColor];
                 return cell;
-            }
+            }/*
             case 1: {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
                 cell.textLabel.text = @"Raul Saeed";
@@ -403,7 +403,7 @@
                 cell.detailTextLabel.textColor = [UIColor systemGrayColor];
                 cell.imageView.image = [UIImage systemImageNamed:@"mug.fill"];
                 return cell;
-            }
+            }*/
                 break;
             default:
                 break;
@@ -430,12 +430,12 @@
         [self presentViewController:navController animated:YES completion:nil];
     }
     else if (indexPath.section == 7 && indexPath.row == 0){
-        NSURL *url = [NSURL URLWithString:@"https://github.com/raulsaeed"];
+        NSURL *url = [NSURL URLWithString:@"https://iosmod.net"];
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }
-    }
+    }/*
     else if (indexPath.section == 7 && indexPath.row == 1){
         NSURL *url = [NSURL URLWithString:@"https://x.com/Ashad__Saeed"];;
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
@@ -448,7 +448,7 @@
         if ([[UIApplication sharedApplication] canOpenURL:url]) {
             [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
         }
-    }
+    }*/
 }
 
 - (UITableViewCell *)createSwitchCellWithTitle:(NSString *)title Detail:(NSString*)detail Key:(NSString*)key {
