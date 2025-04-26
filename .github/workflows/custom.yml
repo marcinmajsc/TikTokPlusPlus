@@ -143,7 +143,7 @@ jobs:
           rm -rf Extension/*
           echo "==> Removed stock Extensions"
           cd ../..
-          zip -r TikTok_$tikTok_version.ipa Payload > /dev/null
+          zip -r TikTok_BHTTPP_$tikTok_version.ipa Payload > /dev/null
           echo "==> TikTok_$tikTok_version.ipa Ziped!"
           rm -rf Payload    
 
@@ -157,6 +157,5 @@ jobs:
           tag_name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ inputs.tweak_version  }}
           name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ inputs.tweak_version  }}
           files: |
-            packages/*.deb
             packages/TikTok_BHTTPP_${{steps.prepare_tiktok.outputs.tikTok_version}}.ipa
           draft: ${{ env.DRAFT }}
