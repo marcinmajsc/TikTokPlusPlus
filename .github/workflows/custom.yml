@@ -52,9 +52,6 @@ jobs:
           path: main
           submodules: recursive
 
-      - name: Hide sensitive inputs
-        uses: levibostian/action-hide-sensitive-inputs@v1
-
       - name: Validate IPA URL
         run: |
           curl -L -r 0-1023 -o sample.part "${{ inputs.ipa_url }}" > /dev/null 2>&1
@@ -145,7 +142,8 @@ jobs:
           cd ../..
           zip -r TikTok_BHTTPP_$tikTok_version.ipa Payload > /dev/null
           echo "==> TikTok_$tikTok_version.ipa Ziped!"
-          rm -rf Payload    
+          rm -rf Payload
+          echo ${ls -lah}
 
       - name: Create Release
         id: create_release
