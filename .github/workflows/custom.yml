@@ -154,5 +154,5 @@ jobs:
           tag_name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ inputs.tweak_version  }}
           name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ inputs.tweak_version  }}
           files: |
-            packages/TikTok_BHTTPP_${{steps.prepare_tiktok.outputs.tikTok_version}}.ipa
+            TikTok_BHTTPP_${{steps.prepare_tiktok.outputs.tikTok_version}}.ipa
           draft: ${{ env.DRAFT }}
