@@ -143,7 +143,7 @@ jobs:
           zip -r TikTok_BHTTPP_$tikTok_version.ipa Payload > /dev/null
           echo "==> TikTok_$tikTok_version.ipa Ziped!"
           rm -rf Payload
-          echo ${ls -lah}
+          echo "${ls -lah}"
 
       - name: Create Release
         id: create_release
