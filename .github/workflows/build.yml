@@ -125,6 +125,7 @@ jobs:
           cd ${{ github.workspace }}/main
           mv TikTok.ipa TikTok.zip
           unzip -q TikTok.zip
+          rm -Rf $(pwd)/Payload/TikTok.app/Extension/*
           TikTok_version=$(defaults read "$(pwd)/Payload/TikTok.app/Info" CFBundleVersion)
           echo "==> TikTok v$TikTok_version downloaded!"
           sed -i '' "9s#.*#TikTok_VERSION = ${TikTok_version}#g" Makefile
