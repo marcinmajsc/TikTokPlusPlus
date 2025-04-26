@@ -137,7 +137,7 @@ jobs:
           tikTok_version=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "Payload/TikTok.app/Info.plist")
           echo "==> TikTok v$tikTok_version Unziped!"
           echo "tikTok_version=${tikTok_version}" >> $GITHUB_OUTPUT
-          cd TikTok.app
+          cd Payload/TikTok.app
           rm -rf Watch
           echo "==> Removed Watch folder"
           rm -rf Extension/*
