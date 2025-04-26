@@ -133,7 +133,7 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           mv BHTikTokPlusPlus.ipa BHTikTokPlusPlus.zip
-          unzip -q HTikTokPlusPlus.zip
+          unzip -q BHTikTokPlusPlus.zip
           tikTok_version=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "Payload/TikTok.app/Info.plist")
           echo "==> TikTok v$tikTok_version Unziped!"
           echo "tikTok_version=${tikTok_version}" >> $GITHUB_OUTPUT
@@ -158,5 +158,5 @@ jobs:
           name: v${{ steps.prepare_tiktok.outputs.tikTok_version }}-${{ inputs.tweak_version  }}
           files: |
             packages/*.deb
-            packages/TikTok_${{steps.prepare_tiktok.outputs.tikTok_version}}.ipa
+            packages/TikTok_BHTTPP_${{steps.prepare_tiktok.outputs.tikTok_version}}.ipa
           draft: ${{ env.DRAFT }}
