@@ -138,7 +138,7 @@ jobs:
           rm -rf Watch
           echo "==> Removed Watch folder"
           rm -rf Extension/*
-          echo "==> Removed stock Extensions"
+          echo "==> Removed Extensions folder"
           cd ../..
           zip -r TikTok_${tikTok_version}_BHTTPP_${{ inputs.tweak_version }}.ipa Payload > /dev/null
           echo "==> TikTok_$tikTok_version.ipa Ziped!"
